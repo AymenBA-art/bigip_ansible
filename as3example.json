@@ -32,7 +32,7 @@
         "http_mon": {
             "class": "Monitor",
             "monitorType": "http",
-            "receive": "I AM UP"
+            "receive": "I AM U P"
         }
       }
     }
