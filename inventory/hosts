@@ -1,4 +1,2 @@
-hosts
-[admin@ansiblecontroller inventory]$ cat hosts 
 localhost
 awaf.lab ansible_host=192.168.1.28
