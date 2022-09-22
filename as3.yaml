@@ -1,0 +1,28 @@
+---
+- name: AS3
+  hosts: awaf.lab
+  connection: httpapi
+  gather_facts: false
+  collections:
+    - f5networks.f5_bigip
+  vars:
+    ansible_host: 192.168.1.28
+    ansible_user: awx
+    ansible_httpapi_password: Ansible1+
+    ansible_httpapi_port: 443
+    ansible_network_os: f5networks.f5_bigip.bigip
+    ansible_httpapi_use_ssl: yes
+    ansible_httpapi_validate_certs: no
+  
+  tasks:
+  - name: Deploy or Update AS3
+    bigip_as3_deploy:
+      content: "{{ lookup('file', 'as3example.json') }}"
+    tags: [ deploy ]
+  - name: run show version on remote devices
+    bigip_command:
+      commands: show sys version
+    register: result
+  - name: Show command result
+    debug:
+      var: result
